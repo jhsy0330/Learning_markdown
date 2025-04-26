@@ -12,4 +12,8 @@
 
 课程链接:https://www.bilibili.com/video/BV1At421h7Ui
 
-USB2.0_HUB: https://github.com/jhsy0330/USB_HUB
+实践项目: 
+
+* USB2.0_HUB: https://github.com/jhsy0330/USB_HUB
+
+### [[跟李沐学AI](https://space.bilibili.com/1567748478?spm_id_from=333.337.0.0)]如何读论文
