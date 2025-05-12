@@ -1,19 +1,19 @@
-# 学习笔记
+# 深度学习（DL/ML）学习路径
 
-### [[跟李沐学AI](https://space.bilibili.com/1567748478?spm_id_from=333.337.0.0)]Dive_into_Deep_learning 
+> 参考学习路径: [[machine-learning-deep-learning-notes](https://github.com/loveunk/machine-learning-deep-learning-notes)]
 
-课程主页: https://d2l.ai/
+主要分为如下几个部分：
 
-### [中山大学]边缘计算_EdgeProcessing
+* 数学基础
+* Python
+* 机器学习
+* 深度学习
+* 强化学习
+* 实践项目
+* 阅读论文
 
-课程主页: https://easyhpc.net/course/132?courseTab=lessonList&activeLesson=852
+## 已学习课程
 
-### [[Expert电子实验室](https://space.bilibili.com/346179450)]PCB设计
-
-课程链接:https://www.bilibili.com/video/BV1At421h7Ui
-
-实践项目: 
-
-* USB2.0_HUB: https://github.com/jhsy0330/USB_HUB
-
-### [[跟李沐学AI](https://space.bilibili.com/1567748478?spm_id_from=333.337.0.0)]如何读论文
+* [[跟李沐学AI](https://space.bilibili.com/1567748478?spm_id_from=333.337.0.0)]Dive_into_Deep_learning 
+* [[中山大学_边缘计算_EdgeProcessing](https://easyhpc.net/course/132?courseTab=lessonList&activeLesson=852)]
+* [[Expert电子实验室](https://space.bilibili.com/346179450)]PCB设计
