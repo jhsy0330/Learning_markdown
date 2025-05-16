@@ -17,3 +17,7 @@
 * [[跟李沐学AI](https://space.bilibili.com/1567748478?spm_id_from=333.337.0.0)]Dive_into_Deep_learning 
 * [[中山大学_边缘计算_EdgeProcessing](https://easyhpc.net/course/132?courseTab=lessonList&activeLesson=852)]
 * [[Expert电子实验室](https://space.bilibili.com/346179450)]PCB设计
+
+## 进行中的课程
+
+* 
