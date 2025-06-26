@@ -2253,5 +2253,122 @@ with open('/Users/michael/test.txt', 'w') as f:
 
 ### 操作文件和目录 OS库
 
+pass
+
+
+
+### 序列化
+
+```python
+d = dict(name='Bob', age=20, score=88)
+pickle.dumps(d)
+
+序列化到文件
+f = open('dump.txt', 'wb')
+pickle.dump(d, f)
+f.close()
+
+```
+
+
+
+反序列化
+
+```python
+>>> f = open('dump.txt', 'rb')
+>>> d = pickle.load(f)
+>>> f.close()
+>>> d
+{'age': 20, 'score': 88, 'name': 'Bob'}
+```
+
+当然，这个变量和原来的变量是完全不相干的对象，它们只是内容相同而已。
+
+Pickle的问题和所有其他编程语言特有的序列化问题一样，就是它只能用于Python，并且可能不同版本的Python彼此都不兼容，因此，只能用Pickle保存那些不重要的数据，不能成功地反序列化也没关系。
+
+
+
+### JSON
+
+```python
+>>> import json
+>>> d = dict(name='Bob', age=20, score=88)
+>>> json.dumps(d)
+'{"age": 20, "score": 88, "name": "Bob"}'
+```
+
+
+
+## 进程和线程
+
+
+
+### 进程
+
+Unix/Linux操作系统提供了一个`fork()`系统调用，它非常特殊。普通的函数调用，调用一次，返回一次，但是`fork()`调用一次，返回两次，因为操作系统自动把当前进程（称为父进程）复制了一份（称为子进程），然后，分别在父进程和子进程内返回。
+
+```python
+getpid()	//获取当前进程PID
+getppid() //获取父进程PID
+```
+
+`multiprocessing`模块提供了一个`Process`类来代表一个进程对象
+
+```python
+from multiprocessing import Process
+import os
+
+# 子进程要执行的代码
+def run_proc(name):
+    print('Run child process %s (%s)...' % (name, os.getpid()))
+
+if __name__=='__main__':
+    print('Parent process %s.' % os.getpid())
+    p = Process(target=run_proc, args=('test',))
+    print('Child process will start.')
+    p.start()
+    p.join()
+    print('Child process end.')
+
+```
+
+```python
+start()	//启动子进程
+join()	//等待子进程结束后再继续往下运行
+```
+
+
+
+### Pool
+
+```python
+from multiprocessing import Pool
+import os, time, random
+
+def long_time_task(name):
+    print('Run task %s (%s)...' % (name, os.getpid()))
+    start = time.time()
+    time.sleep(random.random() * 3)
+    end = time.time()
+    print('Task %s runs %0.2f seconds.' % (name, (end - start)))
+
+if __name__=='__main__':
+    print('Parent process %s.' % os.getpid())
+    p = Pool(4)
+    for i in range(5):
+        p.apply_async(long_time_task, args=(i,))
+    print('Waiting for all subprocesses done...')
+    p.close()
+    p.join()
+    print('All subprocesses done.')
+
+```
+
+对`Pool`对象调用`join()`方法会等待所有子进程执行完毕，调用`join()`之前必须先调用`close()`，调用`close()`之后就不能继续添加新的`Process`了。
+
+
+
+## 正则表达式
+
 
 

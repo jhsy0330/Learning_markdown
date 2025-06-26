@@ -1,3 +1,8 @@
+# 已完成习得技能树
+* python
+  * numpy
+  * pandas
+
 # 深度学习（DL/ML）学习路径
 
 > 参考学习路径: [[machine-learning-deep-learning-notes](https://github.com/loveunk/machine-learning-deep-learning-notes)]
