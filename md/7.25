@@ -1,0 +1,70 @@
+正则化: 减少泛化误差, 而不是减少训练误差的方法 都可以叫做正则化方法
+$$
+L(\mathbf{w}, b) + \frac{\lambda}{2} \|\mathbf{w}\|^2,
+$$
+ 这里我们仍然除以：当我们取一个二次函数的导数时， 2和1/2会抵消，以确保更新表达式看起来既漂亮又简单。 为什么在这里我们使用平方范数而不是标准范数（即欧几里得距离）？ 我们这样做是为了便于计算。 通过平方范数，我们去掉平方根，留下权重向量每个分量的平方和。 这使得惩罚的导数很容易计算：导数的和等于和的导数。
+
+L2范数的一个原因是它对权重向量的大分量施加了巨大的惩罚。 这使得我们的学习算法偏向于在大量特征上均匀分布权重的模型。
+
+L1惩罚会导致模型将权重集中在一小部分特征上， 而将其他权重清除为零。 这称为*特征选择*（feature selection），这可能是其他场景下需要的。
+
+
+$$
+\begin{aligned}
+\mathbf{w} & \leftarrow \left(1- \eta\lambda \right) \mathbf{w} - \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}} \mathbf{x}^{(i)} \left(\mathbf{w}^\top \mathbf{x}^{(i)} + b - y^{(i)}\right).
+\end{aligned}
+$$
+每次更新w都不会变得太大, 限制w的大小
+
+
+
+dropout
+$$
+\begin{split}\begin{aligned}
+h' =
+\begin{cases}
+    0 & \text{ 概率为 } p \\
+    \frac{h}{1-p} & \text{ 其他情况}
+\end{cases}
+\end{aligned}\end{split}
+$$
+
+- 暂退法在前向传播过程中，计算每一内部层的同时丢弃一些神经元。
+- 暂退法可以避免过拟合，它通常与控制权重向量的维数和大小结合使用的。
+- 暂退法将活性值替换为具有期望值的随机变量。
+- 暂退法仅在训练期间使用。
+
+
+
+神经网络设计中的另一个问题是其参数化所固有的对称性。 
+
+假设所有权重初始值都一样, 训练结束后所有值也都相同, 任意交换W位置, 不会改变神经网络结构
+
+默认初始化都是随机值
+
+
+
+为了尽可能保证保证Xin和Xout方差不变, w和x都是两个独立的随机变量, 保证x的方差不变要求结果中n*w的方差为1, 如下公式
+$$
+\begin{split}\begin{aligned}
+    E[o_i] & = \sum_{j=1}^{n_\mathrm{in}} E[w_{ij} x_j] \\&= \sum_{j=1}^{n_\mathrm{in}} E[w_{ij}] E[x_j] \\&= 0, \\
+    \mathrm{Var}[o_i] & = E[o_i^2] - (E[o_i])^2 \\
+        & = \sum_{j=1}^{n_\mathrm{in}} E[w^2_{ij} x^2_j] - 0 \\
+        & = \sum_{j=1}^{n_\mathrm{in}} E[w^2_{ij}] E[x^2_j] \\
+        & = n_\mathrm{in} \sigma^2 \gamma^2.
+\end{aligned}\end{split}
+$$
+同理nout也不应该改变x的方差, 所以使用平均值初始化w
+$$
+\begin{aligned}
+\frac{1}{2} (n_\mathrm{in} + n_\mathrm{out}) \sigma^2 = 1 \text{ 或等价于 }
+\sigma = \sqrt{\frac{2}{n_\mathrm{in} + n_\mathrm{out}}}.
+\end{aligned}
+$$
+通常，Xavier初始化从均值为零，方差 如下的高斯分布中采样权重。
+$$
+ \sigma^2 = \frac{2}{n_\mathrm{in} + n_\mathrm{out}} 
+$$
+
+- 梯度消失和梯度爆炸是深度网络中常见的问题。在参数初始化时需要非常小心，以确保梯度和参数可以得到很好的控制。
+- 梯度消失和梯度爆炸是深度网络中常见的问题。在参数初始化时需要非常小心，以确保梯度和参数可以得到很好的控制。
